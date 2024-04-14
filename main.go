@@ -1,18 +1,19 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"github.com/mfcbentes/meu-primeiro-crud-go/src/configuration/logger"
 	"github.com/mfcbentes/meu-primeiro-crud-go/src/controller/routes"
 )
 
 func main() {
+	logger.Info("About to start user application")
 	err := godotenv.Load()
 	if err != nil {
-		fmt.Println("Error loading .env file")
+		logger.Error("Error loading .env file", err)
 	}
 
 	router := gin.Default()
