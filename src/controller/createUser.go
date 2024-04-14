@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
-	"github.com/mfcbentes/meu-primeiro-crud-go/src/configuration/rest_err"
+	"github.com/mfcbentes/meu-primeiro-crud-go/src/configuration/validation"
 	"github.com/mfcbentes/meu-primeiro-crud-go/src/controller/model/request"
 )
 
@@ -13,8 +13,7 @@ func CreateUser(c *gin.Context) {
 	var userRequest request.UserRequest
 
 	if err := c.ShouldBindJSON(&userRequest); err != nil {
-		restErr := rest_err.NewBadRequestError(
-			fmt.Sprintf("There are some incorrects filds. Error = %s", err.Error()))
+		restErr := validation.ValidateUserError(err)
 		c.JSON(restErr.Code, restErr)
 		return
 	}
