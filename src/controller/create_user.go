@@ -37,7 +37,7 @@ func (u *userControllerInterface) CreateUser(c *gin.Context) {
 		)
 
 		restErr := validation.ValidateUserError(err)
-		c.JSON(restErr.Code, restErr)
+		c.JSON(restErr.Code(), restErr)
 		return
 	}
 
@@ -54,7 +54,7 @@ func (u *userControllerInterface) CreateUser(c *gin.Context) {
 			"Error trying to call CreateUser service",
 			err,
 			zap.String("journey", "createUser"))
-		c.JSON(err.Code, err)
+		c.JSON(err.Code(), err)
 		return
 	}
 

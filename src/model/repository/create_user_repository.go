@@ -12,7 +12,7 @@ import (
 	"go.uber.org/zap"
 )
 
-func (ur *userRepository) CreateUser(userDomain model.UserDomainInterface) (model.UserDomainInterface, *rest_err.RestErr) {
+func (ur *userRepository) CreateUser(userDomain model.UserDomainInterface) (model.UserDomainInterface, rest_err.RestErr) {
 
 	logger.Info("Init createUser repository")
 	collection_name := os.Getenv(MONGODB_USER_COLLECTION)
